@@ -1,0 +1,107 @@
+// text helpers
+
+.text-reset {
+  @include fontStyles;
+}
+.text-monospace {
+  font-family: $fontFixed;
+  font-weight: bold;
+  letter-spacing: -.5px;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-justify {
+  text-align: justify;
+}
+.text-top {
+  vertical-align: top;
+}
+.text-middle {
+  vertical-align: middle;
+}
+.text-bottom {
+  vertical-align: bottom;
+}
+.text-baseline {
+  vertical-align: baseline;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-lowercase {
+  text-transform: lowercase;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
+.text-underline {
+  text-decoration: underline;
+}
+.text-striked {
+  text-decoration: line-through;
+}
+.text-italic {
+  font-style: italic;
+}
+.text-bold {
+  font-weight: bold;
+}
+.text-wrap {
+  @include textWrapAll;
+}
+.text-nowrap {
+  @include textNoWrap;
+}
+.text-clip {
+  @include textClip;
+}
+.text-noselect {
+  @include textNoSelect;
+}
+.text-flip {
+  text-align: left;
+  direction: rtl;
+}
+.text-faded {
+  opacity: 0.5;
+}
+.text-big {
+  font-size: 120%;
+}
+.text-bigger {
+  font-size: 160%;
+}
+.text-huge {
+  font-size: 260%;
+}
+.text-small {
+  font-size: 90%;
+}
+.text-smaller {
+  font-size: 70%;
+}
+.text-tiny {
+  font-size: 50%;
+}
+.text-collapse {
+  line-height: 1em;
+}
+.text-condense {
+  letter-spacing: -1px;
+}
+.text-label {
+  font: inherit;
+  font-size: 80%;
+  letter-spacing: 1px;
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: 1.5em;
+  opacity: 0.4;
+}

@@ -1,0 +1,179 @@
+
+// common document font styles
+@mixin fontStyles {
+  font-family: $fontFamily;
+  font-weight: $fontWeight;
+  font-style: normal;
+  line-height: $lineHeight;
+  letter-spacing: $letterSpace;
+  text-transform: none;
+}
+
+// prevent text from being selected
+@mixin textNoSelect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+// wrap all long text
+@mixin textWrapAll {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+// prevent text from wrapping
+@mixin textNoWrap {
+  white-space: nowrap;
+}
+
+// clip text and add ellipsis
+@mixin textClip {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// add light border to the bottom of containers
+@mixin borderAccent {
+  border-bottom: $lineWidth solid rgba( black, 0.1 );
+}
+
+// common scrollable page wrapper
+@mixin contentScroller {
+  @include contentWrapper;
+  overflow-y: auto;
+}
+
+// common dropdown/select style containers
+@mixin commonDropdown {
+  display: none;
+  position: absolute;
+  transition: none;
+  left: 0;
+  top: 0;
+  min-width: 100px;
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+  background-color: lighten( $colorDocument, 8% );
+  border-radius: $lineJoin;
+  box-shadow: $shadowBold;
+  z-index: ( $zindexAlerts + 10 );
+
+  &.left { // show from left
+    left: 0;
+    right: auto;
+  }
+  &.right { // show from right
+    left: auto;
+    right: 0;
+  }
+  &.top { // show from top
+    top: 40%;
+    bottom: auto;
+    animation: slideUp ( $fxSpeed / 2 ) $fxEase forwards;
+  }
+  &.bottom { // show from bottom
+    top: auto;
+    bottom: 40%;
+    animation: slideDown ( $fxSpeed / 2 ) $fxEase forwards;
+  }
+  &.visible {
+    display: block;
+  }
+}
+
+// item counter bubble
+@mixin itemCountBubble {
+  text-align: center;
+  font-family: monospace;
+  font-size: 50%;
+  min-width: 2em;
+  line-height: 2em;
+  padding: 0 .5em;
+  border-radius: 100px;
+  background-color: $colorDanger;
+  color: $colorDangerText;
+  box-shadow: $shadowPaper;
+}
+
+// fullscreen modifiers
+@mixin fullScreen( $fixed: 0 ) {
+  display: block;
+  overflow: hidden;
+  @if $fixed == 1 { position: fixed; }
+  @else { position: absolute; }
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// apply filter effect to images
+@mixin imageFilter {
+  filter: brightness( 96% ) sepia( 2% ) !important;
+}
+
+// vertical align for absolute elements
+@mixin verticalCenter {
+  top: 50%;
+  transition: none;
+  transform: translateY( -50% );
+}
+
+// horizontal align for absolute elements
+@mixin horizontalCenter {
+  left: 50%;
+  transition: none;
+  transform: translateX( -50% );
+}
+
+// align center for absolute elements
+@mixin positionCenter {
+  left: 50%;
+  top: 50%;
+  transition: none;
+  transform: translateX( -50% ) translateY( -50% );
+}
+
+// apply transparent bg color for debugging
+@mixin bgTest {
+  background-color: rgba( pink, .08 );
+}
+
+// background image placement
+@mixin bgCover {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+}
+
+// background color blend effect
+@mixin bgColorBlend( $c1: red, $c2: green, $c3: blue ) {
+  background-image:
+    linear-gradient( 217deg, rgba( $c1, .8 ), rgba( $c1, 0 ) 70.71% ),
+    linear-gradient( 127deg, rgba( $c2, 1 ),  rgba( $c2, 0 ) 70.71% ),
+    linear-gradient( 336deg, rgba( $c3, .8 ), rgba( $c3, 0 ) 70.71% );
+  @include bgCover;
+}
+
+// radial gradient background color
+@mixin bgRadial( $color ) {
+  $dark: saturate( darken( $color, 8% ), 8% );
+  $image: radial-gradient( circle, $color 0%, $dark 55% );
+  background-color: $dark;
+  background-image: $image;
+  @include bgCover;
+}
+

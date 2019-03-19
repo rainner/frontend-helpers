@@ -1,0 +1,99 @@
+// flexbox helpers
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+.flex-left { justify-content: flex-start; }
+.flex-center { justify-content: center; }
+.flex-right { justify-content: flex-end; }
+.flex-space { justify-content: space-between; }
+.flex-around { justify-content: space-around; }
+.flex-stretch { justify-content: stretch; }
+.flex-top { align-items: flex-start; }
+.flex-middle { align-items: center; }
+.flex-bottom { align-items: flex-end; }
+
+// auto switch between column and row
+
+.flex-autorow {
+  display: block;
+
+  & > .flex-item {
+    margin: 0 0 $padSpace 0; // push bottom
+    &:last-of-type { margin: 0; }
+  }
+
+  @media #{$screenMedium} {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    & > .flex-item {
+      margin: 0 $padSpace 0 0; // push right
+      &:last-of-type { margin: 0; }
+    }
+  }
+}
+
+// table-like lists
+
+.flex-list {
+  display: block;
+  position: relative;
+
+  & > .flex-header,
+  & > .flex-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: stretch;
+    margin: 0 0 ( $lineWidth * 2 ) 0;
+    padding: ( $padSpace / 2 );
+    border-radius: $lineJoin;
+    background-color: rgba( black, 0.1 );
+  }
+  & > .flex-item:hover {
+    background-color: rgba( black, 0.3 );
+  }
+}
+
+// grid layout
+
+.flex-grid {
+  display: grid;
+  grid-gap: $padSpace;
+  grid-template-columns: repeat( auto-fill, minmax( 140px, 1fr ) );
+
+  &.flex-grid-sm {
+    grid-template-columns: repeat( auto-fill, minmax( 200px, 1fr ) );
+  }
+  &.flex-grid-md {
+    grid-template-columns: repeat( auto-fill, minmax( 300px, 1fr ) );
+  }
+  &.flex-grid-lg {
+    grid-template-columns: repeat( auto-fill, minmax( 400px, 1fr ) );
+  }
+}
+
+// distribution
+
+.flex-a { flex: auto; }
+
+@for $i from 1 through 9 {
+  .flex-#{$i} { flex: $i; }
+}
+@for $i from 1 through 10 {
+  $s: ( 10 * $i );
+  $p: ( 10% * $i );
+  .flex-#{$s} { flex-basis: $p; }
+}
+
+
